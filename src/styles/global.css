@@ -51,15 +51,15 @@
 @theme {
   --color-bg: #020617;
   --color-bg-elevated: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-2: #334155;
-  --color-border: #334155;
+  --color-surface: #030712;
+  --color-surface-2: #111827;
+  --color-border: rgb(from #374151 r g b / 0.2);
   --color-text: #f1f5f9;
   --color-text-muted: #94a3b8;
   --color-text-subtle: #64748b;
   --color-accent: #8b5cf6;
-  --color-accent-hover: #a78bfa;
-  --color-accent-soft: rgb(139 92 246 / 0.1);
+  --color-accent-hover: #7c3aed;
+  --color-accent-soft: rgb(from var(--color-accent) r g b / 0.1);
 }
 
 /* Fonts */
