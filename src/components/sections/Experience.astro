@@ -1,0 +1,94 @@
+---
+/**
+ * Experience.astro — Professional experience, single primary entry (Distrito Moda)
+ * plus internal project sub-items flagged as non-production.
+ *
+ * id="experience". Headings: h2 section → h3 role → h4 internal projects.
+ * Avoids endless tech list — focuses on real dev, integrations, problems solved.
+ */
+
+import { experience, type InternalProject } from '../../data/experience';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+function internalProjectNoteLabel(project: InternalProject): string {
+  if (project.note === 'no-llego-a-produccion') {
+    return 'Interno — no llegó a producción';
+  }
+  return '';
+}
+---
+
+<section id="experience" class="px-4 py-24 sm:px-6">
+  <div class="mx-auto max-w-3xl space-y-12">
+    <SectionHeading
+      eyebrow="Experiencia"
+      title="Experience"
+    />
+
+    {experience.map((entry) => (
+      <article class="space-y-6 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <!-- Header: role, company, period -->
+        <div class="space-y-1">
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="font-display text-h3 text-text">{entry.role}</h3>
+            <span class="font-mono text-sm text-text-muted whitespace-nowrap">
+              {entry.period}
+            </span>
+          </div>
+          <p class="text-accent text-lg font-medium">{entry.company}</p>
+        </div>
+
+        <!-- Summary -->
+        <p class="text-text-muted leading-relaxed">{entry.summary}</p>
+
+        <!-- Highlights — concise, 6-8 most relevant -->
+        <ul class="space-y-2 text-text-muted">
+          {entry.highlights.map((highlight) => (
+            <li class="flex gap-2 text-sm leading-relaxed">
+              <span class="mt-1 shrink-0 select-none text-accent" aria-hidden="true">
+                ▹
+              </span>
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Internal projects nested under Distrito Moda -->
+        {entry.internalProjects && entry.internalProjects.length > 0 && (
+          <div class="border-t border-border pt-6 space-y-4">
+            <p class="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
+              Proyectos internos
+            </p>
+
+            <div class="space-y-4">
+              {entry.internalProjects.map((project) => (
+                <div class="rounded-lg border border-border/50 bg-bg-elevated p-4 space-y-2">
+                  <h4 class="font-sans font-semibold text-text text-base">
+                    {project.name}
+                  </h4>
+                  <p class="text-sm text-text-muted leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Tech chips */}
+                  <div class="flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <span class="inline-flex items-center rounded border border-border bg-surface px-2 py-0.5 font-mono text-xs text-text-muted">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Non-production flag */}
+                  <p class="font-mono text-xs text-amber-400/90 pt-1">
+                    {internalProjectNoteLabel(project)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+</section>

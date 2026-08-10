@@ -1,0 +1,35 @@
+---
+/**
+ * SectionHeading.astro — Eyebrow + section title with anchor.
+ *
+ * Props:
+ *   eyebrow? — small label above the heading (Geist Pixel display)
+ *   title    — h2 heading text (Geist Pixel display)
+ *   id?      — anchor id (also set as section[id] scroll-margin target)
+ */
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  id?: string;
+  class?: string;
+}
+
+const { eyebrow, title, id, class: className } = Astro.props;
+---
+
+<div class:list={['space-y-2', className]}>
+  {
+    eyebrow && (
+      <p class="font-display text-sm tracking-widest text-accent uppercase">
+        {eyebrow}
+      </p>
+    )
+  }
+  <h2
+    id={id}
+    class="font-display text-h2 text-text"
+  >
+    {title}
+  </h2>
+</div>

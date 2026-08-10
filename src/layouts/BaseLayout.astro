@@ -1,0 +1,26 @@
+---
+/**
+ * BaseLayout.astro — Root HTML shell for all pages.
+ *
+ * Sets <html lang="es" class="dark">, imports global.css + BaseHead,
+ * renders a <main> slot plus an optional footer placeholder.
+ */
+
+import BaseHead from '../components/layout/BaseHead.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <BaseHead />
+  </head>
+  <body class="min-h-screen bg-bg text-text font-sans antialiased">
+    <slot />
+  </body>
+</html>

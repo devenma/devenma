@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ── Dark variant (ready for future light-mode toggle) ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Self-hosted @font-face (woff2, latin-subset via pyftsubset) ── */
+/* woff2 lives in public/fonts/ for stable /fonts/... URLs (preload-friendly).
+   Source variable TTFs kept in src/fonts/ for re-subsetting; not shipped to dist.
+   Total woff2 payload: ~110KB. Geist body preloaded; others lazy via font-display: swap. */
+
+@font-face {
+  font-family: "Geist Pixel";
+  src: url("/fonts/GeistPixel-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-VariableItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  src: url("/fonts/JetBrainsMono-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  src: url("/fonts/JetBrainsMono-VariableItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Tailwind v4 @theme ── */
+
+/* Colors — dark slate/gray surfaces + single violet accent */
+@theme {
+  --color-bg: #020617;
+  --color-bg-elevated: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #334155;
+  --color-border: #334155;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+  --color-accent: #8b5cf6;
+  --color-accent-hover: #a78bfa;
+  --color-accent-soft: rgb(139 92 246 / 0.1);
+}
+
+/* Fonts */
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-display: "Geist Pixel", monospace;
+}
+
+/* Fluid type scale */
+@theme {
+  --text-xs: clamp(0.75rem, 0.25vw + 0.625rem, 0.875rem);
+  --text-xs--line-height: 1.5;
+  --text-sm: clamp(0.875rem, 0.25vw + 0.75rem, 1rem);
+  --text-sm--line-height: 1.5;
+  --text-base: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+  --text-base--line-height: 1.6;
+  --text-lg: clamp(1.125rem, 0.75vw + 0.875rem, 1.25rem);
+  --text-lg--line-height: 1.6;
+  --text-xl: clamp(1.25rem, 1vw + 0.875rem, 1.5rem);
+  --text-xl--line-height: 1.4;
+  --text-2xl: clamp(1.5rem, 2vw + 0.75rem, 2rem);
+  --text-2xl--line-height: 1.3;
+  --text-3xl: clamp(1.875rem, 3vw + 1rem, 3rem);
+  --text-3xl--line-height: 1.2;
+  --text-h1: clamp(2.25rem, 5vw + 0.5rem, 4rem);
+  --text-h1--line-height: 1.1;
+  --text-h2: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+  --text-h2--line-height: 1.2;
+  --text-h3: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
+  --text-h3--line-height: 1.3;
+}
+
+/* ── Light tokens (additive-ready — NOT shipped in v1) ── */
+/* @theme { */
+/*   --color-bg: #f8fafc; */
+/*   --color-bg-elevated: #f1f5f9; */
+/*   --color-surface: #ffffff; */
+/*   --color-surface-2: #f1f5f9; */
+/*   --color-border: #cbd5e1; */
+/*   --color-text: #0f172a; */
+/*   --color-text-muted: #475569; */
+/*   --color-text-subtle: #94a3b8; */
+/* } */
+
+/* ── Base layer ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  /* Honor prefers-reduced-motion: collapse all transitions to instant */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+    outline-style: solid;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-text;
+  }
+
+  /* Scroll-margin-top for anchored section headings */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Prose max-width */
+  .prose {
+    max-width: 65ch;
+  }
+}

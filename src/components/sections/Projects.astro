@@ -1,0 +1,95 @@
+---
+/**
+ * Projects.astro — Project cards in fixed order with status badges,
+ * monogram placeholders, tech chips, and links (TODO where missing).
+ *
+ * id="projects". Grid: 1 col mobile, 2 col tablet, 3 col desktop.
+ * State truthfulness maintained from data — never presents in-development as production.
+ */
+
+import { projects } from '../../data/projects';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Badge from '../ui/Badge.astro';
+import Card from '../ui/Card.astro';
+---
+
+<section id="projects" class="px-4 py-24 sm:px-6">
+  <div class="mx-auto max-w-6xl space-y-12">
+    <SectionHeading
+      eyebrow="Proyectos"
+      title="Selected Projects"
+    />
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project) => (
+        <Card class="flex flex-col gap-4">
+          <!-- Monogram placeholder (replace with screenshot later) -->
+          <div
+            class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border border-border bg-accent-soft"
+            aria-hidden="true"
+          >
+            <span class="font-display text-xl text-accent">
+              {project.monogram}
+            </span>
+          </div>
+          <!-- TODO: replace monogram div with <img> when screenshots are available -->
+
+          <!-- Name + status -->
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="font-display text-h3 text-text leading-tight">
+              {project.name}
+            </h3>
+            <Badge tone={project.status} />
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm text-text-muted leading-relaxed flex-1">
+            {project.description}
+          </p>
+
+          <!-- Technology chips -->
+          {project.technologies.length > 0 && (
+            <div class="flex flex-wrap gap-1.5">
+              {project.technologies.map((tech) => (
+                <span class="inline-flex items-center rounded border border-border bg-surface px-2 py-0.5 font-mono text-xs text-text-muted">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Links or TODO placeholder */}
+          <div class="mt-auto pt-2">
+            {project.links && project.links.length > 0 ? (
+              <ul class="space-y-1">
+                {project.links.map((link) => (
+                  <li>
+                    {link.todo ? (
+                      <span class="font-mono text-xs text-text-subtle italic">
+                        {link.label} — TODO
+                      </span>
+                    ) : (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-mono text-xs text-accent no-underline hover:underline transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="font-mono text-xs text-text-subtle italic">
+                {/* TODO: add links (repo, npm, live site) when available */}
+                Enlaces próximamente
+              </p>
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

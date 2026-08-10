@@ -1,0 +1,51 @@
+---
+/**
+ * Hero.astro — Full-viewport hero section.
+ *
+ * id="home". Most visual section. Single <h1> with name, role/accent line,
+ * short intro, two CTAs, and social links. No scroll-reveal — hover/focus only.
+ */
+
+import { profile } from '../../data/profile';
+import { socialLinks } from '../../data/social';
+import Button from '../ui/Button.astro';
+import SocialLinks from '../ui/SocialLinks.astro';
+---
+
+<section
+  id="home"
+  class="flex min-h-screen flex-col justify-center px-4 py-24 sm:px-6"
+>
+  <div class="mx-auto w-full max-w-3xl space-y-8">
+    <!-- Name — the only <h1> on the page -->
+    <div class="space-y-4">
+      <h1 class="font-display text-h1 text-text leading-[1.1]">
+        {profile.name}
+      </h1>
+
+      <!-- Role line in JetBrains Mono, accent, tracking-wide -->
+      <p class="font-mono text-lg tracking-wider text-accent">
+        {profile.role}
+      </p>
+    </div>
+
+    <p class="text-lg text-text-muted leading-relaxed max-w-prose">
+      {profile.intro}
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap gap-4">
+      <Button variant="primary" href="#projects">
+        Ver proyectos
+      </Button>
+      <Button variant="secondary" href="#contact">
+        Contactarme
+      </Button>
+    </div>
+
+    <!-- Social links -->
+    <div class="pt-4">
+      <SocialLinks links={socialLinks} />
+    </div>
+  </div>
+</section>
