@@ -19,12 +19,12 @@ import SocialLinks from "../ui/SocialLinks.astro";
   <div class="mx-auto w-full max-w-3xl space-y-8">
     <!-- Name — the only <h1> on the page -->
     <div class="space-y-4">
-      <h1 class="font-display text-h1 text-text leading-[1.1]">
+      <h1 class="font-display text-h2 text-text leading-tight">
         {profile.name}
       </h1>
 
       <!-- Role line in JetBrains Mono, accent, tracking-wide -->
-      <p class="font-mono text-lg tracking-wider text-accent">
+      <p class="font-mono italic text-lg tracking-wider text-accent">
         {profile.role}
       </p>
     </div>
@@ -33,15 +33,15 @@ import SocialLinks from "../ui/SocialLinks.astro";
       {profile.intro}
     </p>
 
+    <!-- Social links -->
+    <div class="pt-4">
+      <SocialLinks links={socialLinks} />
+    </div>
+
     <!-- CTAs -->
     <div class="flex flex-wrap gap-4">
       <Button variant="primary" href="#projects"> Proyectos </Button>
       <Button variant="secondary" href="#contact"> Contáctame </Button>
-    </div>
-
-    <!-- Social links -->
-    <div class="pt-4">
-      <SocialLinks links={socialLinks} />
     </div>
   </div>
 </section>

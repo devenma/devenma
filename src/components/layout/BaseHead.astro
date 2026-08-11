@@ -5,8 +5,8 @@
  * Expects site and profile data to be passed as props.
  */
 
-import { site } from '../../data/site';
-import { profile } from '../../data/profile';
+import { site } from "../../data/site";
+import { profile } from "../../data/profile";
 
 export interface Props {
   title?: string;
@@ -17,7 +17,7 @@ export interface Props {
 const {
   title = site.title,
   description = site.description,
-  ogImage = '/og.png', // TODO: create real OG image
+  ogImage = "/og.png", // TODO: create real OG image
 } = Astro.props;
 
 const canonicalUrl = site.url; // TODO: replace with real domain
@@ -61,12 +61,16 @@ const canonicalUrl = site.url; // TODO: replace with real domain
 />
 
 <!-- Person JSON-LD -->
-<script type="application/ld+json" is:inline set:html={JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: profile.name,
-  jobTitle: profile.role,
-  url: canonicalUrl, // TODO: replace with real domain
-  sameAs: [profile.github, profile.linkedin],
-  email: profile.email,
-})}></script>
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    jobTitle: profile.role,
+    url: canonicalUrl, // TODO: replace with real domain
+    sameAs: [profile.github, profile.linkedin],
+    email: profile.email,
+  })}
+/>

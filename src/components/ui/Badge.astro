@@ -6,7 +6,7 @@
  *   tone — 'development' | 'functional' | 'completed'
  */
 
-export type ProjectStatus = 'in-development' | 'functional' | 'completed';
+export type ProjectStatus = "in-development" | "functional" | "completed";
 
 interface Props {
   tone: ProjectStatus;
@@ -16,25 +16,25 @@ interface Props {
 const { tone, class: className } = Astro.props;
 
 const statusLabels: Record<ProjectStatus, string> = {
-  'in-development': 'En desarrollo',
-  functional: 'Funcional',
-  completed: 'Completado',
+  "in-development": "En desarrollo",
+  functional: "Funcional",
+  completed: "Completado",
 };
 
 const toneClasses: Record<ProjectStatus, string> = {
-  'in-development': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-  functional: 'bg-accent/15 text-accent border-accent/30',
-  completed: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+  "in-development": "bg-amber-500/15 text-amber-300 border-amber-500/30",
+  functional: "bg-accent/15 text-accent border-accent/30",
+  completed: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
 };
 
 const label = statusLabels[tone];
 const combinedClass = [
-  'inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium',
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium whitespace-nowrap",
   toneClasses[tone],
   className,
 ]
   .filter(Boolean)
-  .join(' ');
+  .join(" ");
 ---
 
 <span class={combinedClass}>{label}</span>

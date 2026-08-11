@@ -7,15 +7,7 @@
  *   class? — additional classes for the container
  */
 
-import Icon from "./Icon.astro";
-import type { IconName } from "./Icon.astro";
-
-interface SocialLink {
-  label: string;
-  href: string;
-  icon: IconName;
-  ariaLabel: string;
-}
+import type { SocialLink } from "../../data/social";
 
 interface Props {
   links: SocialLink[];
@@ -34,14 +26,10 @@ const { links, class: className } = Astro.props;
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.ariaLabel}
-          class="inline-flex items-center gap-2 text-text-muted transition-colors hover:text-accent"
+          class="inline-flex font-display items-center gap-2 text-text-muted transition hover:scale-105 hover:text-accent"
         >
-          <Icon
-            class="transition-transform hover:scale-105"
-            name={link.icon}
-            size={24}
-            decorative
-          />
+          <i class:list={["text-xl hn", link.icon]} />
+          <span>{link.label}</span>
         </a>
       </li>
     ))

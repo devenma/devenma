@@ -24,19 +24,23 @@ import Card from '../ui/Card.astro';
       {projects.map((project) => (
         <Card class="flex flex-col gap-4">
           <!-- Monogram placeholder (replace with screenshot later) -->
-          <div
-            class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border border-border bg-accent-soft"
-            aria-hidden="true"
-          >
-            <span class="font-display text-xl text-accent">
-              {project.monogram}
-            </span>
-          </div>
+          {project.image ? (
+            <img class="rounded-lg" src={project.image}/>
+          ) : (
+            <div
+              class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border border-border bg-accent-soft"
+              aria-hidden="true"
+            >
+              <span class="font-display text-xl text-accent">
+                {project.monogram}
+              </span>
+            </div>
+            )}
           <!-- TODO: replace monogram div with <img> when screenshots are available -->
 
           <!-- Name + status -->
           <div class="flex items-start justify-between gap-2">
-            <h3 class="font-display text-h3 text-text leading-tight">
+            <h3 class="font-display text-lg text-text leading-tight">
               {project.name}
             </h3>
             <Badge tone={project.status} />
