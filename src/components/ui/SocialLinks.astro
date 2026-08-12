@@ -17,7 +17,9 @@ interface Props {
 const { links, class: className } = Astro.props;
 ---
 
-<ul class:list={["flex flex-wrap items-center gap-4", className]}>
+<ul
+  class:list={["flex flex-wrap items-center max-sm:text-xs gap-4", className]}
+>
   {
     links.map((link) => (
       <li>

@@ -11,9 +11,11 @@ import { projects } from '../../data/projects';
 import SectionHeading from '../ui/SectionHeading.astro';
 import Badge from '../ui/Badge.astro';
 import Card from '../ui/Card.astro';
+import { promise } from 'astro:schema';
+import { Image } from 'astro:assets';
 ---
 
-<section id="projects" class="px-4 py-24 sm:px-6">
+<section id="projects" class="px-4 py-18 sm:px-6 min-h-screen">
   <div class="mx-auto max-w-6xl space-y-12">
     <SectionHeading
       eyebrow="Proyectos"
@@ -22,13 +24,16 @@ import Card from '../ui/Card.astro';
 
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project) => (
-        <Card class="flex flex-col gap-4">
+        <Card class="flex flex-col gap-4 group">
           <!-- Monogram placeholder (replace with screenshot later) -->
-          {project.image ? (
-            <img class="rounded-lg" src={project.image}/>
+          {project.images ? (
+            <div class="rounded-t-xl overflow-hidden">
+              <Image width="640" height="480" alt={project.name} class="dark group-hover:scale-105 transition-transform ease-in-out duration-300" src={project.images.dark}/>
+              <Image width="640" height="480" alt={project.name} class="light group-hover:scale-105 transition-transform ease-in-out duration-300" src={project.images.light}/>
+            </div>
           ) : (
             <div
-              class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border border-border bg-accent-soft"
+              class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border border-border bg-accent-soft mt-6 ml-6"
               aria-hidden="true"
             >
               <span class="font-display text-xl text-accent">
@@ -39,7 +44,7 @@ import Card from '../ui/Card.astro';
           <!-- TODO: replace monogram div with <img> when screenshots are available -->
 
           <!-- Name + status -->
-          <div class="flex items-start justify-between gap-2">
+          <div class="flex items-start justify-between gap-2 px-6">
             <h3 class="font-display text-lg text-text leading-tight">
               {project.name}
             </h3>
@@ -47,13 +52,13 @@ import Card from '../ui/Card.astro';
           </div>
 
           <!-- Description -->
-          <p class="text-sm text-text-muted leading-relaxed flex-1">
+          <p class="text-sm text-text-muted leading-relaxed flex-1 px-6">
             {project.description}
           </p>
 
           <!-- Technology chips -->
           {project.technologies.length > 0 && (
-            <div class="flex flex-wrap gap-1.5">
+            <div class="flex flex-wrap gap-1.5 px-6">
               {project.technologies.map((tech) => (
                 <span class="inline-flex items-center rounded border border-border bg-surface px-2 py-0.5 font-mono text-xs text-text-muted">
                   {tech}
@@ -63,7 +68,7 @@ import Card from '../ui/Card.astro';
           )}
 
           {/* Links or TODO placeholder */}
-          <div class="mt-auto pt-2">
+          <div class="mt-auto pt-2 px-6 pb-6">
             {project.links && project.links.length > 0 ? (
               <ul class="space-y-1">
                 {project.links.map((link) => (

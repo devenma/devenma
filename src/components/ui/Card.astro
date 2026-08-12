@@ -10,12 +10,12 @@
 const { as, href, class: className } = Astro.props;
 
 const baseClasses =
-  'block rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-text-muted';
+  "block rounded-xl border border-border bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-text-muted";
 
-const combinedClass = [baseClasses, className].filter(Boolean).join(' ');
+const combinedClass = [baseClasses, className].filter(Boolean).join(" ");
 
-const Tag = href ? 'a' : (as ?? 'div');
-const extra = href ? { href, rel: 'noopener noreferrer' } : {};
+const Tag = href ? "a" : (as ?? "div");
+const extra = href ? { href, rel: "noopener noreferrer" } : {};
 ---
 
 <Tag class={combinedClass} {...extra}>

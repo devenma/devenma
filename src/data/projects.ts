@@ -13,7 +13,7 @@ export interface Project {
   description: string;
   technologies: string[];
   monogram: string;
-  image?: string;
+  images?: { dark: string; light: string };
   links?: ProjectLink[];
 }
 
@@ -26,7 +26,10 @@ export const projects: Project[] = [
       "Plataforma independiente orientada al descubrimiento y promoción musical. Actualmente desarrollada con Astro y Vue, utilizando Tailwind CSS para la interfaz y Supabase como backend.",
     technologies: ["Astro", "Vue", "TypeScript", "Tailwind CSS", "Supabase"],
     monogram: "SP",
-    image: "/projects/spinlists.png",
+    images: {
+      dark: "/projects/spinlists-dark.png",
+      light: "/projects/spinlists-light.png",
+    },
     links: [],
   },
   {
@@ -37,7 +40,10 @@ export const projects: Project[] = [
       "Componente reutilizable de navegación responsive que funciona como bottom sheet en dispositivos móviles y como sidebar en escritorio. Publicado en npm con automatización de versiones.",
     technologies: ["Astro", "TypeScript", "CSS"],
     monogram: "AB",
-    image: "/projects/astro-bottomsheet.png",
+    images: {
+      dark: "/projects/astro-bottomsheet-dark.png",
+      light: "/projects/astro-bottomsheet-light.png",
+    },
     links: [],
   },
   {
@@ -46,9 +52,12 @@ export const projects: Project[] = [
     status: "completed",
     description:
       "Alternativa self-hosted a servicios como Linktree, desarrollada para centralizar enlaces y contenido asociado a un perfil de artista.",
-    technologies: [],
+    technologies: ["Astro", "TypeScript", "Tailwind CSS"],
     monogram: "CB",
-    image: "/projects/chocolatebutter.png",
+    images: {
+      dark: "/projects/chocolatebutter-dark.png",
+      light: "/projects/chocolatebutter-light.png",
+    },
     links: [],
   },
   {

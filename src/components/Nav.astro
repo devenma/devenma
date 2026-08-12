@@ -17,7 +17,7 @@ const navLinks = [
 ---
 
 <header
-  class="sticky top-4 z-50 border-b border-border bg-bg-elevated backdrop-blur-sm max-w-2xl mx-4 sm:mx-auto rounded-4xl shadow-sm"
+  class="sticky top-4 z-50 border-b border-border bg-bg-elevated/90 backdrop-blur-sm max-w-2xl mx-4 sm:mx-auto rounded-4xl shadow-sm"
 >
   <nav
     aria-label="Navegación principal"
@@ -55,21 +55,7 @@ const navLinks = [
         aria-label="Abrir menú de navegación"
       >
         <!-- Hamburger icon (pure SVG, no JS) -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          aria-hidden="true"
-        >
-          <path d="M4 6h16"></path>
-          <path d="M4 12h16"></path>
-          <path d="M4 18h16"></path>
-        </svg>
+        <i class="text-xl hn hn-bars"></i>
       </summary>
       <ul
         class="absolute right-4 top-full mt-2 rounded-lg border border-border bg-bg-elevated p-3 shadow-lg space-y-2 min-w-40"

@@ -65,15 +65,15 @@
 /* Colors — dark slate/gray surfaces + single violet accent */
 @theme {
   --color-bg: light-dark(#f8fafc, #020617);
-  --color-bg-elevated: ligh-dark(#f1f5f9, #0f172a);
+  --color-bg-elevated: light-dark(#f1f5f9, #0f172a);
   --color-surface: light-dark(#ffffff, #030712);
   --color-surface-2: light-dark(#f1f5f9, #111827);
   --color-border: light-dark(#cbd5e1, rgb(from #374151 r g b / 0.2));
   --color-text: light-dark(#0f172a, #f1f5f9);
   --color-text-muted: light-dark(#475569, #94a3b8);
   --color-text-subtle: light-dark(#94a3b8, #64748b);
-  --color-accent: #8b5cf6;
-  --color-accent-hover: #7c3aed;
+  --color-accent-hover: #8b5cf6;
+  --color-accent: #7c3aed;
   --color-accent-soft: rgb(from var(--color-accent) r g b / 0.1);
 }
 
@@ -121,10 +121,28 @@
 
   html.dark {
     color-scheme: dark;
+    *.light {
+      display: none;
+    }
   }
 
   html.light {
     color-scheme: light;
+    *.dark {
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    html:not(.dark) *.dark {
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not(.light) *.light {
+      display: none;
+    }
   }
 
   /* Honor prefers-reduced-motion: collapse all transitions to instant */
@@ -152,11 +170,6 @@
 
   ::selection {
     @apply bg-accent/30 text-text;
-  }
-
-  /* Scroll-margin-top for anchored section headings */
-  section[id] {
-    scroll-margin-top: 5rem;
   }
 
   /* Prose max-width */
