@@ -9,11 +9,30 @@
  */
 
 import SectionHeading from "../ui/SectionHeading.astro";
+import { skillGroups, type SkillWeight } from "../../data/skills";
+
+const weightToTextSize: Record<SkillWeight, string> = {
+  core: "text-xl",
+  working: "text-base",
+  additional: "text-sm",
+};
+
+const weightToColor: Record<SkillWeight, string> = {
+  core: "text-text",
+  working: "text-text-muted",
+  additional: "text-text-subtle",
+};
+
+const weightToSeparator: Record<SkillWeight, string> = {
+  core: "text-text-muted",
+  working: "text-text-subtle",
+  additional: "text-text-subtle/50",
+};
 ---
 
 <section id="about" class="px-4 py-18 sm:px-6 min-h-screen">
-  <div class="mx-auto max-w-3xl space-y-10">
-    <SectionHeading eyebrow="Perfil" title="Sobre mí" />
+  <div class="mx-auto max-w-3xl space-y-10 mb-18">
+    <SectionHeading eyebrow="hn-user" title="Sobre mí" />
 
     <div class="prose space-y-4 text-base text-text-muted leading-relaxed">
       <p>
@@ -39,6 +58,37 @@ import SectionHeading from "../ui/SectionHeading.astro";
         correctamente: tiene que verse bien, sentirse consistente y ser clara de
         usar en cualquier dispositivo.
       </p>
+    </div>
+  </div>
+  <div class="mx-auto max-w-3xl space-y-6">
+    <SectionHeading
+      eyebrow="hn-code-block"
+      title="Skills"
+    />
+
+    <div class="space-y-8">
+      {skillGroups.map((group) => (
+        <div class="space-y-2">
+          <!-- Group label — Geist Pixel eyebrow (matches SectionHeading convention) -->
+          <h3 class="font-display text-sm tracking-widest text-accent uppercase">
+            {group.label}
+          </h3>
+
+          <!-- Technologies inline with middot separator -->
+          <p class={`${weightToTextSize[group.weight]} ${weightToColor[group.weight]} leading-relaxed`}>
+            {group.technologies.map((tech, i) => (
+              <span>
+                {tech}
+                {i < group.technologies.length - 1 && (
+                  <span class={`mx-1.5 select-none ${weightToSeparator[group.weight]}`} aria-hidden="true">
+                    &middot;
+                  </span>
+                )}
+              </span>
+            ))}
+          </p>
+        </div>
+      ))}
     </div>
   </div>
 </section>

@@ -18,18 +18,18 @@ interface Props {
 const { eyebrow, title, id, class: className } = Astro.props;
 ---
 
-<div class:list={['space-y-2', className]}>
-  {
-    eyebrow && (
-      <p class="font-display text-sm tracking-widest text-accent uppercase">
-        {eyebrow}
-      </p>
-    )
-  }
-  <h2
-    id={id}
-    class="font-display text-h2 text-text"
-  >
+<div class:list={["space-y-2", className]}>
+  <h2 id={id} class="font-display text-accent text-h2">
+    {
+      eyebrow && (
+        <i
+          class:list={[
+            "hn mr-4 font-display text-text tracking-widest uppercase",
+            eyebrow,
+          ]}
+        />
+      )
+    }
     {title}
   </h2>
 </div>
