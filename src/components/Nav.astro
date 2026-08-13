@@ -16,11 +16,11 @@ const navLinks = [
 ---
 
 <header
-  class="sticky top-4 z-50 border-b border-border bg-bg-elevated/90 backdrop-blur-sm w-fit mx-4 sm:mx-auto rounded-4xl shadow-sm"
+  class="sticky top-4 z-50 border-b border-border bg-bg-elevated/90 backdrop-blur-sm sm:w-fit mx-4 sm:mx-auto rounded-4xl shadow-sm"
 >
   <nav
     aria-label="Navegación principal"
-    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6"
+    class="mx-auto flex items-center justify-between gap-4 px-4 py-2 sm:px-6"
   >
     <!-- Monogram / home link -->
     <a
@@ -46,6 +46,66 @@ const navLinks = [
         ))
       }
     </ul>
+
+    <details id="themeSelector" class="group relative ml-auto">
+      <summary
+        class="flex cursor-pointer text-xl list-none items-center justify-center rounded-lg p-1 text-text-muted hover:text-accent transition-colors"
+        aria-label="Abrir menú de navegación"
+      >
+        <i class="hn hn-moon-solid theme-icon"></i>
+      </summary>
+      <ul
+        class="absolute right-0 top-full mt-5 rounded-lg border border-border bg-bg-elevated p-3 shadow-lg space-y-2 min-w-40"
+      >
+        {
+          ["Light", "Dark", "System"].map((theme) => (
+            <li>
+              <button
+                class="set-theme-btn block w-full text-left cursor-pointer rounded-md px-3 py-2 font-mono text-sm text-text-muted transition-colors hover:bg-surface hover:text-accent"
+                data-theme={theme.toLowerCase()}
+                commandfor="themeSelector"
+                command="--setTheme"
+              >
+                {theme}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
+    <script>
+      const themeSelector = document.getElementById("themeSelector");
+      const THEME_ICON_CLASSES = {
+        dark: "hn-moon-solid",
+        light: "hn-sun-solid",
+        system: "hn-pc-solid",
+      };
+
+      type Theme = "dark" | "light" | "system";
+
+      themeSelector?.addEventListener("command", (event: Event) => {
+        if (event instanceof CommandEvent && event.command === "--setTheme") {
+          const source = event.source as HTMLButtonElement | null;
+          const theme: Theme = (source?.dataset?.theme as Theme) ?? "system";
+          const icon = themeSelector?.querySelector(".theme-icon");
+
+          themeSelector.removeAttribute("open");
+
+          setTheme(theme, icon);
+        }
+
+        function setTheme(theme: Theme, icon?: Element | null) {
+          const HTML = document.querySelector("html");
+          HTML?.classList.remove("dark");
+          HTML?.classList.remove("light");
+          HTML?.classList.remove("system");
+          HTML?.classList.add(theme);
+
+          if (icon)
+            icon.className = `theme-icon hn ${THEME_ICON_CLASSES[theme]}`;
+        }
+      });
+    </script>
 
     <!-- Mobile disclosure menu (zero JS) -->
     <details class="sm:hidden group">

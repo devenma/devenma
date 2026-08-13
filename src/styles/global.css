@@ -1,19 +1,12 @@
 @import "tailwindcss";
 
 /* ── Dark variant (ready for future light-mode toggle) ── */
-@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
 /* ── Self-hosted @font-face (woff2, latin-subset via pyftsubset) ── */
 /* woff2 lives in public/fonts/ for stable /fonts/... URLs (preload-friendly).
    Source variable TTFs kept in src/fonts/ for re-subsetting; not shipped to dist.
    Total woff2 payload: ~110KB. Geist body preloaded; others lazy via font-display: swap. */
-
-@font-face {
-  font-family: "Geist Pixel";
-  src: url("/fonts/GeistPixel-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-}
 
 @font-face {
   font-family: "Geist";
@@ -52,14 +45,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Departure Mono";
-  src: url("/fonts/DepartureMono-Regular.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* ── Tailwind v4 @theme ── */
 
 /* Colors — dark slate/gray surfaces + single violet accent */
@@ -81,7 +66,7 @@
 @theme {
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
-  --font-display: "Departure Mono", "Geist Pixel", monospace;
+  --font-display: "Departure Mono", monospace;
 }
 
 /* Fluid type scale */
@@ -119,32 +104,6 @@
     scroll-padding-top: 5rem;
   }
 
-  html.dark {
-    color-scheme: dark;
-    *.light {
-      display: none;
-    }
-  }
-
-  html.light {
-    color-scheme: light;
-    *.dark {
-      display: none;
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    html:not(.dark) *.dark {
-      display: none;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    html:not(.light) *.light {
-      display: none;
-    }
-  }
-
   /* Honor prefers-reduced-motion: collapse all transitions to instant */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -154,13 +113,10 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+
     html {
       scroll-behavior: auto;
     }
-  }
-
-  body {
-    @apply bg-bg text-text font-sans antialiased;
   }
 
   :focus-visible {
@@ -175,5 +131,46 @@
   /* Prose max-width */
   .prose {
     max-width: 65ch;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html:not(.dark) *.dark {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) *.light {
+    display: none;
+  }
+}
+
+html.dark {
+  color-scheme: dark;
+
+  *.light {
+    display: none;
+  }
+}
+
+html.light {
+  color-scheme: light;
+
+  *.dark {
+    display: none;
+  }
+}
+
+html.system {
+  #themeSelector {
+    .dark,
+    .light {
+      display: none;
+    }
+
+    .system {
+      display: block;
+    }
   }
 }
