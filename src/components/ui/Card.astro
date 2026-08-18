@@ -10,7 +10,7 @@
 const { as, href, class: className } = Astro.props;
 
 const baseClasses =
-  "block rounded-xl border border-border bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-text-muted";
+  "block rounded-xl border border-border bg-surface duration-250 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/10";
 
 const combinedClass = [baseClasses, className].filter(Boolean).join(" ");
 

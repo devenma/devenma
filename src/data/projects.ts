@@ -1,6 +1,7 @@
 export type ProjectStatus = "in-development" | "functional" | "completed";
 
 export interface ProjectLink {
+  type: "preview" | "code";
   label: string;
   href: string;
   todo?: boolean;
@@ -30,7 +31,9 @@ export const projects: Project[] = [
       dark: "/projects/spinlists-dark.png",
       light: "/projects/spinlists-light.png",
     },
-    links: [],
+    links: [
+      { type: "preview", label: "Preview", href: "https://www.spin-lists.com" },
+    ],
   },
   {
     slug: "astro-bottomsheet",
@@ -44,7 +47,18 @@ export const projects: Project[] = [
       dark: "/projects/astro-bottomsheet-dark.png",
       light: "/projects/astro-bottomsheet-light.png",
     },
-    links: [],
+    links: [
+      {
+        type: "preview",
+        label: "Preview",
+        href: "https://lofi.chocolatebutter.deno.net",
+      },
+      {
+        type: "code",
+        label: "Code",
+        href: "https://github.com/devenma/astro-bottomsheet",
+      },
+    ],
   },
   {
     slug: "chocolatebutter",
@@ -58,7 +72,18 @@ export const projects: Project[] = [
       dark: "/projects/chocolatebutter-dark.png",
       light: "/projects/chocolatebutter-light.png",
     },
-    links: [],
+    links: [
+      {
+        type: "preview",
+        label: "Preview",
+        href: "https://lofi.chocolatebutter.deno.net",
+      },
+      {
+        type: "code",
+        label: "Code",
+        href: "https://github.com/devenma/chocolatebutter",
+      },
+    ],
   },
   {
     slug: "daily",
