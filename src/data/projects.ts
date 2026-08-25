@@ -28,8 +28,8 @@ export const projects: Project[] = [
     technologies: ["Astro", "Vue", "TypeScript", "Tailwind CSS", "Supabase"],
     monogram: "SP",
     images: {
-      dark: "/projects/spinlists-dark.png",
-      light: "/projects/spinlists-light.png",
+      dark: "/projects/spinlists-dark.webp",
+      light: "/projects/spinlists-light.webp",
     },
     links: [
       { type: "preview", label: "Preview", href: "https://www.spin-lists.com" },
@@ -44,8 +44,8 @@ export const projects: Project[] = [
     technologies: ["Astro", "TypeScript", "CSS"],
     monogram: "AB",
     images: {
-      dark: "/projects/astro-bottomsheet-dark.png",
-      light: "/projects/astro-bottomsheet-light.png",
+      dark: "/projects/astro-bottomsheet-dark.webp",
+      light: "/projects/astro-bottomsheet-light.webp",
     },
     links: [
       {
@@ -69,8 +69,8 @@ export const projects: Project[] = [
     technologies: ["Astro", "TypeScript", "Tailwind CSS"],
     monogram: "CB",
     images: {
-      dark: "/projects/chocolatebutter-dark.png",
-      light: "/projects/chocolatebutter-light.png",
+      dark: "/projects/chocolatebutter-dark.webp",
+      light: "/projects/chocolatebutter-light.webp",
     },
     links: [
       {

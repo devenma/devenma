@@ -59,7 +59,26 @@
   --color-text-subtle: light-dark(#94a3b8, #64748b);
   --color-accent-hover: #8b5cf6;
   --color-accent: #7c3aed;
+  --color-accent-intense: #6d28d9;
   --color-accent-soft: rgb(from var(--color-accent) r g b / 0.1);
+}
+
+/* Alternative Theme */
+@layer base {
+  [data-theme="elegant"] {
+    --color-bg: light-dark(#fafafa, #0c090c);
+    --color-bg-elevated: light-dark(#fbfaf9, #1d1816);
+    --color-surface: light-dark(white, #0c0a09);
+    --color-surface-2: light-dark(#f3f1f1, #1d1816);
+    --color-border: light-dark(#e8e4e3, rgb(from #473c39 r g b / 0.2));
+    --color-text: light-dark(#1d1816, #fbfaf9);
+    --color-text-muted: light-dark(#5b4f4b, #a8a29e);
+    --color-text-subtle: #7c6d67;
+    --color-accent-hover: #f43f5e;
+    --color-accent: #e11d48;
+    --color-accent-intense: #be123c;
+    --color-accent-soft: rgb(from var(--color-accent) r g b / 0.1);
+  }
 }
 
 /* Fonts */

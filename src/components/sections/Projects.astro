@@ -27,8 +27,8 @@ import { Image } from 'astro:assets';
           <!-- Images - monogram placeholder -->
           {project.images ? (
             <div class="rounded-t-xl overflow-hidden">
-              <Image width="640" height="480" alt={project.name} class="dark group-hover:scale-105 transition-transform ease-in-out duration-500" src={project.images.dark}/>
-              <Image width="640" height="480" alt={project.name} class="light group-hover:scale-105 transition-transform ease-in-out duration-500" src={project.images.light}/>
+              <Image width="640" height="360" alt={project.name} class="dark group-hover:scale-105 transition-transform ease-in-out duration-500" src={project.images.dark}/>
+              <Image width="640" height="360" alt={project.name} class="light group-hover:scale-105 transition-transform ease-in-out duration-500" src={project.images.light}/>
             </div>
           ) : (
             <div

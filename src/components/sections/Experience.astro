@@ -19,15 +19,16 @@ function internalProjectNoteLabel(project: InternalProject): string {
 ---
 
 <section id="experience" class="px-4 py-18 sm:px-6 min-h-screen">
-  <div class="mx-auto max-w-3xl space-y-12">
+  <div class="mx-auto max-w-7xl space-y-12">
     <SectionHeading
       eyebrow="hn-briefcase"
       title="Experiencia"
     />
 
     {experience.map((entry) => (
-      <article class="space-y-6 rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <article class="gap-6 flex max-xl:flex-col rounded-xl border border-border bg-surface p-6 sm:p-8">
         <!-- Header: role, company, period -->
+        <div class="space-y-6">
         <div class="space-y-1">
           <div class="flex flex-wrap items-baseline justify-between gap-2">
             <h3 class="font-display text-h3 text-text">{entry.role}</h3>
@@ -52,10 +53,11 @@ function internalProjectNoteLabel(project: InternalProject): string {
             </li>
           ))}
         </ul>
+        </div>
 
         <!-- Internal projects nested under Distrito Moda -->
         {entry.internalProjects && entry.internalProjects.length > 0 && (
-          <div class="border-t border-border pt-6 space-y-4">
+          <div class="max-xl:border-t max-xl:pt-6 xl:border-l xl:pl-6 border-border space-y-4">
             <p class="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
               Proyectos internos
             </p>
